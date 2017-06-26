@@ -1,5 +1,21 @@
 module.exports = function(grunt) {
     grunt.initConfig({
+	babel:
+	{
+	    dist: {
+		files: {
+		    'build/foundation.core.js': 'node_modules/foundation-sites/js/foundation.core.js'
+		}
+	    }
+	},
+ 	concat: {
+	    options: {
+		separator: ';',      },
+	    dist: {
+		src: ['build/foundation.core.js'],
+		dest: 'dist/built.js'
+	    }
+	},
 	sass: {
 	    dist: {
 		options: {
@@ -25,6 +41,8 @@ module.exports = function(grunt) {
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-babel');
 
     // Default task(s).
     grunt.registerTask('default', ['sass']);
